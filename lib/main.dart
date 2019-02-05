@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './login.dart';
 
 void main() => runApp(EngineApp());
 
@@ -18,7 +19,7 @@ class EngineState extends State<EngineApp> {
           title: Text('Flutter Engine')
         ),
         body: Center(
-          child: Text('Just test')
+          child: LoginWidget()
         )
       )
     );
