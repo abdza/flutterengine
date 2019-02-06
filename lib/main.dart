@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './login.dart';
+import './home.dart';
 
 void main() => runApp(EngineApp());
 
@@ -11,16 +12,14 @@ class EngineApp extends StatefulWidget {
 }
 
 class EngineState extends State<EngineApp> {
+
+  var _isLoggedIn = false;
+
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Flutter Engine')
-        ),
-        body: Center(
-          child: LoginWidget()
-        )
+      home: Builder(
+        builder: (context) => this._isLoggedIn? HomeWidget() : LoginWidget()
       )
     );
   }

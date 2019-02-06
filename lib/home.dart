@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './recordlist.dart';
 
 class HomeWidget extends StatefulWidget {
   @override
@@ -16,7 +17,14 @@ class HomeState extends State<HomeWidget> {
                 title: Text('Flutter Engine')
             ),
             body: Center(
-                child: Text('Home')
+                child: Column(
+                  children: <Widget>[
+                    FlatButton(onPressed: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context)=> RecordListWidget()));
+                    }, child: Text('Record List'))
+                  ],
+                )
             )
         )
     );

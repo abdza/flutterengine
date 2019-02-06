@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './home.dart';
 
 class LoginWidget extends StatefulWidget {
   @override
@@ -61,6 +62,8 @@ class LoginState extends State<LoginWidget> {
           this._formKey.currentState.save();
           print('email:' + this._emailvalue);
           print('password:' + this._passwordvalue);
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context)=> HomeWidget()));
           //Navigator.of(context).pushNamed(HomePage.tag);
         },
         padding: EdgeInsets.all(12),
@@ -77,9 +80,13 @@ class LoginState extends State<LoginWidget> {
       onPressed: () {},
     );
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
+    return MaterialApp(
+        home: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+        title: Text('Flutter Engine'),
+    ),
+    body: Center(
         child: Form(
           key: _formKey,
           autovalidate: false,
@@ -98,6 +105,7 @@ class LoginState extends State<LoginWidget> {
         ),
       ),
       ),
+    )
     );
   }
 }
