@@ -20,8 +20,7 @@ class RecordViewState extends State<RecordViewWidget> {
 
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
             appBar: AppBar(
                 title: Text('Flutter Engine')
             ),
@@ -37,7 +36,6 @@ class RecordViewState extends State<RecordViewWidget> {
                 )
               ],
             )
-        )
     );
   }
 }

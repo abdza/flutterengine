@@ -11,8 +11,7 @@ class HomeWidget extends StatefulWidget {
 class HomeState extends State<HomeWidget> {
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
             appBar: AppBar(
                 title: Text('Flutter Engine')
             ),
@@ -26,7 +25,6 @@ class HomeState extends State<HomeWidget> {
                   ],
                 )
             )
-        )
     );
   }
 }

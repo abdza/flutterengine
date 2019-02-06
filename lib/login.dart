@@ -80,8 +80,7 @@ class LoginState extends State<LoginWidget> {
       onPressed: () {},
     );
 
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
         title: Text('Flutter Engine'),
@@ -105,7 +104,6 @@ class LoginState extends State<LoginWidget> {
         ),
       ),
       ),
-    )
     );
   }
 }

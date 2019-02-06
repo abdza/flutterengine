@@ -18,9 +18,7 @@ class EngineState extends State<EngineApp> {
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      home: Builder(
-        builder: (context) => this._isLoggedIn? HomeWidget() : LoginWidget()
-      )
+      home: this._isLoggedIn? HomeWidget() : LoginWidget()
     );
   }
 }
