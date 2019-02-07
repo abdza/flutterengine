@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './recordedit.dart';
 
 class RecordViewWidget extends StatefulWidget {
 
@@ -22,7 +23,16 @@ class RecordViewState extends State<RecordViewWidget> {
   Widget build(BuildContext context){
     return Scaffold(
             appBar: AppBar(
-                title: Text('Flutter Engine')
+                title: Text('Flutter Engine'),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: (){
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=> RecordEditWidget(this.item)));
+                  },
+                )
+              ],
             ),
             body: ListView(
               children: <Widget>[
