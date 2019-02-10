@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import './home.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -17,6 +19,8 @@ class LoginState extends State<LoginWidget> {
 
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
 
+  final _storage = new FlutterSecureStorage();
+
   var _emailvalue = '';
   var _passwordvalue = '';
   var _invalidlogin = false;
@@ -26,7 +30,6 @@ class LoginState extends State<LoginWidget> {
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: 'flutterengine@gmail.com',
       decoration: InputDecoration(
         hintText: 'Email',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -41,7 +44,6 @@ class LoginState extends State<LoginWidget> {
 
     final password = TextFormField(
       autofocus: false,
-      initialValue: 'some password',
       obscureText: true,
       decoration: InputDecoration(
         hintText: 'Password',
@@ -68,6 +70,8 @@ class LoginState extends State<LoginWidget> {
         final response = await dio.post(url);
         if(response.statusCode == 200){
           print(response.data.toString());
+          await _storage.write(key: 'email', value:_emailvalue);
+          await _storage.write(key: 'password', value:_passwordvalue);
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => HomeWidget())
           );
