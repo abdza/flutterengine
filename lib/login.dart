@@ -5,7 +5,19 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import './home.dart';
 
+var serverbase = '';
+
+final storage = new FlutterSecureStorage();
+
 class LoginWidget extends StatefulWidget {
+  generalsetup() async {
+    serverbase = await storage.read(key: 'serverbase');
+  }
+
+  LoginWidget() {
+    generalsetup();
+  }
+
   @override
   State<StatefulWidget> createState() {
     return LoginState();
@@ -18,8 +30,6 @@ class LoginState extends State<LoginWidget> {
    */
 
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-
-  final _storage = new FlutterSecureStorage();
 
   var _emailvalue = '';
   var _passwordvalue = '';
@@ -65,20 +75,19 @@ class LoginState extends State<LoginWidget> {
             "Basic " + base64Encode(utf8.encode('$_emailvalue:$_passwordvalue'))
       }));
       print("Trying to login");
-      final url = 'http://10.132.1.135:8800/login';
+      final url = serverbase + '/login';
       try {
         final response = await dio.post(url);
-        if(response.statusCode == 200){
+        if (response.statusCode == 200) {
           print(response.data.toString());
-          await _storage.write(key: 'email', value:_emailvalue);
-          await _storage.write(key: 'password', value:_passwordvalue);
+          await storage.write(key: 'email', value: _emailvalue);
+          await storage.write(key: 'password', value: _passwordvalue);
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomeWidget())
-          );
+              context, MaterialPageRoute(builder: (context) => HomeWidget()));
         }
       } on DioError catch (e) {
-        if(e.response!=null){
-          setState((){
+        if (e.response != null) {
+          setState(() {
             this._invalidlogin = true;
           });
         }
@@ -96,9 +105,6 @@ class LoginState extends State<LoginWidget> {
           print('email:' + this._emailvalue);
           print('password:' + this._passwordvalue);
           _login(context);
-          /* Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomeWidget())
-          );*/
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
