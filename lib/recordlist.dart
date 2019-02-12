@@ -80,8 +80,8 @@ class RecordListState extends State<RecordListWidget> {
                 itemBuilder: (context, i) {
                   final curitem = this.items[i];
                   return ListTile(
-                    title: Text(curitem['participant_list']),
-                    subtitle: Text(curitem['staff_no']),
+                    title: Text(curitem[this.fields[0]['name']]),
+                    subtitle: Text(curitem[this.fields[1]['name']]),
                     onTap: () {
                       Navigator.push(
                           context,
